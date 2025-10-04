@@ -6,6 +6,9 @@
     $username = 'root';
     $password = '';
 
+    // AUTO LOAD VENDOR FILES
+    require dirname(__DIR__)  . '/vendor/autoload.php';
+
     try {
         $string = $driver . ":host=" . $hostname . ";charset=utf8mb4;dbname=" . $database;
         $dbConnection = new \PDO(
@@ -14,6 +17,16 @@
     } catch (\PDOException $e) {
         exit($e->getMessage());
     }
+
+
+
+     // Import PHPMailer classes into the global namespace
+    // These must be at the top of your script, not inside a function
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
+
 
     
 	// Generate UUID VERSION 4
