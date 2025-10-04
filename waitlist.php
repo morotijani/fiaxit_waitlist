@@ -104,7 +104,38 @@
 	    return $ip;  
 	}
 
+    // get admin by email
+    function findByEamil($email) {
+        global $dbConnection;
 
+        $query = "
+            SELECT * FROM susu_admins 
+            WHERE list_email = ? 
+            LIMIT 1
+        ";
+        $statement = $dbConnection->prepare($query);
+        $statement->execute([$email]);
+        $user = $statement->fetch(PDO::FETCH_OBJ);
+        return $user;
+    }
+
+    // get admin by id
+    function findByPhone($phone) {
+        global $dbConnection;
+
+        $query = "
+            SELECT * FROM susu_admins 
+            WHERE list_phone = ? 
+            LIMIT 1
+        ";
+        $statement = $dbConnection->prepare($query);
+        $statement->execute([$phone]);
+        $user = $statement->fetch(PDO::FETCH_OBJ);
+        return $user;
+    }
+
+
+    // 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = trim($_POST['email'] ?? '');
         $phone = trim($_POST['phone'] ?? '');
@@ -114,6 +145,17 @@
             echo "Missing fields";
             exit;
         }
+
+        if (findByEamil($email)) {
+            echo "Email already in use !";
+            exit;
+        }
+        
+        if (findByPhone($phone)) {
+            echo "Phone number already in use !";
+            exit;
+        }
+
 
         // get other details
 		$a = getBrowserAndOs();
