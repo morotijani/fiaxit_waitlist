@@ -134,6 +134,63 @@
         return $user;
     }
 
+    // Send EMAIL
+	function send_email($name, $to, $subject, $body) {
+		$mail = new PHPMailer(true);
+		try {
+	        $fn = $name;
+	        $to = $to;
+	        $from = 'info@carethatfeelslikehome.com';
+	        $from_name = 'Care That Feels Like Home';
+	        $subject = $subject;
+	        $body = $body;
+
+	        //Create an instance; passing `true` enables exceptions
+	        $mail = new PHPMailer(true);
+
+	        $mail->IsSMTP();
+	        $mail->SMTPAuth = true;
+
+	        $mail->SMTPSecure = 'ssl'; 
+	        $mail->Host = 'smtp.carethatfeelslikehome.com';
+	        $mail->Port = '465';  
+	        $mail->Username = $from;
+	        $mail->Password = 'Ab31ab431'; 
+
+	        $mail->IsHTML(true);
+	        $mail->WordWrap = 50;
+	        $mail->From = $from;
+	        $mail->FromName = $from_name;
+	        $mail->Sender = $from;
+	        $mail->AddReplyTo($from, $from_name);
+	        $mail->Subject = $subject;
+	        $mail->Body = $body;
+	        $mail->AddAddress($to);
+	        $mail->send();
+	        return true;
+	    } catch (Exception $e) {
+	    	//return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	    	return false;
+	        //$message = "Please check your internet connection well...";
+	    }
+	}
+
+	// send mail to server
+	function send_mail_to_server($subject, $body) {
+		$to_server = 'info@carethatfeelslikehome.com';
+
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		$headers .= "From:" . $to_server;
+					
+		mail($to_server, $subject, $body, $headers);
+	}
+
+
+
+
+
+
 
     // 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
