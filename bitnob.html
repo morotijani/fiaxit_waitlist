@@ -1,0 +1,53 @@
+<form method="POST" id="sendForm">
+			      	<div class="modal-body">
+			      		<span id="step-1">
+			      			<div class="d-flex form-text justify-content-between">
+			      				<span id="crypto-fees">BTC Fees: 0.00003005 + 5% BTC</span>
+			      				<span id="usd-fees">USD Fees: 0.80 + 5% USD</span>
+			      			</div>
+							<div class="input-group mb-3">
+								<select class="fw-bolder" id="send_currency" name="send_currency" style="border: none">
+								  	<option value="USD" selected>USD</option>
+								  	<option value="GHS">GHS</option>
+								</select>
+							  	<input type="number" class="form-control form-control-white text-center form-control-xl" min="1" name="send_amount" id="send_amount" placeholder="$0.00" style="font-size: 40px; font-weight: 700;" autofocus aria-describedby="amountHelp">
+							  	 <input type="hidden" id="returnInCrypto">
+							</div>
+							<div id="amountHelp" class="form-text amountMsg"></div>
+							<div class="form-floating mb-3">
+								<select class="form-select" aria-label="Floating label select example fw-bolder" name="asset" id="asset">
+							  		<?= getAssets($conn, $user_id); ?>
+								</select>
+								<label for="asset">Asset *</label>
+							  	<div class="form-text assetMsg"></div>
+								<div class="form-text asset_balance"></div>
+							</div>
+							<div class="form-floating mb-3">
+							  	<input type="text" class="form-control form-control-xl fw-bolder" name="to_address" id="to_address" placeholder="" autocomplete="nope">
+							  	<div class="form-text toMsg"></div>
+							  	<div class="form-text">As money transmitted to the wrong address may result in permanent loss, make sure the address is accurate.</div>
+							  	<label for="to_address">Address *</label>
+							</div>
+							<div class="form-floating mb-3">
+							 	<textarea class="form-control form-control-xl fw-bolder" placeholder="Leave a comment here" id="note" name="note"></textarea>
+							 	<label for="note">Comments</label>
+							</div>
+							<button class="btn btn-lg btn-secondary" id="next-1">Continue</button>
+						</span>
+						<!-- TRANSACTION SUMMARY -->
+				      	<span id="step-2" class="d-none text-center">
+				        	<ul class="list-group" id="sendsummary"></ul>
+				        	<button type="button" class="btn btn-warning mt-4" id="next-2">Confirm Transaction</button>
+				        	<br><a href="javascript:;" class="text-dark" id="prev-1"><< Go Back</a>
+				      	</span>
+						<span id="step-3" class="d-none">
+							<div class="form-floating inputpin mb-3">
+								<input type="number" class="form-control form-control-xl fw-bolder" min="1" placeholder="Enter PIN" name="pin" id="pin" autocomplete="nope">
+							  	<div class="form-text pinMsg"></div>
+							  	<label for="pin">PIN *</label>
+							</div>
+							<button type="button" class="btn btn-secondary" id="prev-2">Back</button>
+			        		<button type="submit" class="btn btn-warning" id="submitSend" name="submitSend">Send</button>
+						</span>
+			      	</div>
+				</form>
