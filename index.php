@@ -97,184 +97,38 @@ include ('config.php');
                                             <span><span id="amount-in-crypto-crypto"></span>: <span id="amount-in-crypto-amount"></span></span>
                                         </div>
                                     </div>
-                              
-                            </div>
-          </div>
-            </div>
-          </div>
-          <div class="col-md-7 col-lg-8 order-md-2">
-            <div class="card border-0 bg-secondary h-100 px-xl-4 pb-sm-2 pb-xl-4">
-              <img class="d-block mx-auto" src="logo.png" width="200" alt="Image">
-              <div class="card-body">
-                <h1 class="display-5" style='font-family: "Google Sans Code", monospace;'>Exchange your crypto asset instantly, securely and seemslessly</h1>
-                <p class="card-text">Be among the first to enjoy seamless and secure crypto asset exchange; executed at lightning speed.</p>
-                <form class="mb-5" id="sigin-form" method="POST">
-                    <div id="response-message"></div>
-                    <div class="mb-4">
-                        <label class="visually-hidden" for="email">Email Address</label>
-                        <input class="form-control form-control-lg" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
-                    </div>
-                    <div class="mb-4 phone">
-                        <label class="visually-hidden" for="phone">Phone</label>
-                        <input type="text" class="form-control form-control-lg" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
-                    </div>
-                    
-                    <div class="d-sm-flex justify-content-center justify-content-lg-start">
-                        <button class="btn btn-lg btn-info w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
-                    </div>
-
-                </form>                <p class="text-center text-body-warning mb-0">✌️ No Spam — We Promise!</p>
-
-              </div>
-            </div>
-          </div>
-          
-         
-        </div>
-      </section>
-
-
-      
-
-
-
-
-    
-    <!-- Page content -->
-    <main class="page-wrapper">
-        <div class="d-flex flex-column flex-lg-row justify-content-between min-vh-100 position-relative">
-            <div class="position-absolute top-0 start-0 w-100 h-100 d-lg-none">
-                <div class="d-dark-mode-none position-absolute top-0 start-0 w-100 h-100" style="background-color: #f2f3f7;"></div>
-            </div>
-            <div class="d-flex flex-column justify-content-center w-lg-50 position-relative z-2 mt-auto mt-lg-0">
-                <div class="text-center text-lg-start pt-5 pb-3 py-lg-5 px-3 px-sm-4 px-lg-5 mx-auto" style="max-width: 630px;">
-                    <h1 class="display-1">Error 404</h1>
-                    <p class="lead pb-2 mb-4 mb-lg-5">The page you are looking for was moved, removed or might never existed.</p>
-                    <form class="mb-5" id="sigin-form" method="POST">
-                    <div id="response-message"></div>
-                    <div class="mb-4">
-                        <label class="visually-hidden" for="email">Email Address</label>
-                        <input class="form-control form-control-lg" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
-                    </div>
-                    <div class="mb-4 phone">
-                        <label class="visually-hidden" for="phone">Phone</label>
-                        <input type="text" class="form-control form-control-lg" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
-                    </div>
-                    
-                    <div class="d-sm-flex justify-content-center justify-content-lg-start">
-                        <button class="btn btn-lg btn-info w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
-                    </div>
-
-                </form>                <p class="text-center text-body-warning mb-0">✌️ No Spam — We Promise!</p>
-
-                    <a class="btn btn-lg btn-primary" href="index.html">Go to homepage</a>
-                </div>
-            </div>
-            <div class="d-flex flex-column position-relative justify-content-end align-items-center w-lg-50 overflow-hidden">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-none d-lg-block">
-                    <div class="d-dark-mode-none position-absolute top-0 start-0 w-100 h-100" style="background-color: #f2f3f7;"></div>
-                    <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(255,255,255, .04);"></div>
-                </div>
-                <div class="position-relative z-2" style="max-width: 948px;">
-                    <img src="new.jpg" alt="Lady" id="lady">
-                    <img class="position-absolute top-0 start-0 w-100 h-100" src="layer02-light.png" alt="Bubble" id="bubble">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" id="question">
-                        <img class="d-dark-mode-none" src="layer03-light.png" alt="Question mark">
-                        <img class="d-none d-dark-mode-block" src="layer03-dark.png" alt="Question mark">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-
-
-
-
-
-
-
-
-
-
-
-    <section class="bg-primary bg-opacity-10 d-flex  py-5">
-        <div class="container d-flex justify-content-center pb-sm-3 py-md-4 py-xl-5">
-            <div class="row align-items-center pt-5 mt-4 mt-xxl-0">
-
-                <!-- Video + Parallax -->
-                <div class="col-lg-6 mb-4 mb-lg-0 pb-3 pb-lg-0">
-                    <div class="parallax mx-auto mx-lg-0" style="max-width: 582px;">
-                        <div class="parallax-layer z-3" data-depth="0.1">
-                            <div class="position-relative bg-dark mx-auto" style="max-width: 61%; padding: .3125rem; margin-bottom: 9.9%; border-radius: calc(var(--ar-border-radius) * 2.125);">
-                                <div class="position-absolute start-50 translate-middle-x" style="top: 4.4%; width: 85%;">
-                                    <div class="row row-cols-4 gx-2 mb-3">
-                                        <div class="col">
-                                            <div class="border-white border opacity-80"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="border-white border opacity-80"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="border-white border opacity-80"></div>
-                                        </div>
-                                        <div class="col position-relative">
-                                            <div class="position-absolute top-0 start-0 w-100 border-white border opacity-30"></div>
-                                        <div class="position-absolute top-0 start-0 w-50 border-white border opacity-80"></div>
-                                    </div>
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="logo.png" width="35" alt="Avatar">
-                                    <div class="fs-xs ps-2">
-                                        <span class="text-nav fw-bold me-1" style="color: #fff !important;">Fiaxit</span>
-                                        <span class="text-body-secondary" style="color: #fff !important;">12 min</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-block w-100" style="border-radius: calc(var(--ar-border-radius) * 1.875);">
-                                <img src="dd.png" style="border-radius: calc(var(--ar-border-radius) * 1.875);" />
                             </div>
                         </div>
                     </div>
-                    <div class="parallax-layer" data-depth="0.3">
-                        <img src="shape01.svg" alt="Background shape">
-                    </div>
-                    <div class="parallax-layer z-2" data-depth="-0.1">
-                        <img src="shape02.svg" alt="Background shape">
-                    </div>
-                    <div class="parallax-layer" data-depth="-0.15">
-                        <img src="shape03.svg" alt="Background shape">
-                    </div>
-                    <div class="parallax-layer z-2" data-depth="-0.25">
-                        <img src="shape04.svg" alt="Background shape">
+                    <div class="col-md-7 col-lg-8 order-md-2">
+                        <div class="card border-0 bg-secondary h-100 px-xl-4 pb-sm-2 pb-xl-4">
+                            <img class="d-block mx-auto" src="logo.png" width="200" alt="Image">
+                            <div class="card-body">
+                                <h1 class="display-5" style='font-family: "Google Sans Code", monospace;'>Exchange your crypto asset instantly, securely and seemslessly</h1>
+                                <p class="card-text">Be among the first to enjoy seamless and secure crypto asset exchange; executed at lightning speed.</p>
+                                <form class="mb-5" id="sigin-form" method="POST">
+                                    <div id="response-message"></div>
+                                    <div class="mb-4">
+                                        <label class="visually-hidden" for="email">Email Address</label>
+                                        <input class="form-control form-control-lg" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
+                                    </div>
+                                    <div class="mb-4 phone">
+                                        <label class="visually-hidden" for="phone">Phone</label>
+                                        <input type="text" class="form-control form-control-lg" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
+                                    </div>
+                                    <div class="d-sm-flex justify-content-center justify-content-lg-start">
+                                        <button class="btn btn-lg btn-info w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
+                                    </div>
+                                </form>
+                                <p class="text-center text-body-warning mb-0">✌️ No Spam — We Promise!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 pb-3 mb-4"><span class="fw-normal">waitlist</span> Your money; your way.</h1>
-                <form class="mb-5" id="sigin-form" method="POST">
-                    <div id="response-message"></div>
-                    <div class="mb-4">
-                        <label class="visually-hidden" for="email">Email Address</label>
-                        <input class="form-control" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
-                    </div>
-                    <div class="mb-4 phone">
-                        <label class="visually-hidden" for="phone">Phone</label>
-                        <input type="text" class="form-control mb-3" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
-                    </div>
-                    
-                    <div class="d-sm-flex justify-content-center justify-content-lg-start">
-                        <button class="btn btn-lg btn-primary w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
-                    </div>
-
-                </form>
-                <p class="text-center text-body-warning mb-0">✌️ No Spam — We Promise!</p>
-            </div>
-        </div>
-    </div>
-    </section>
-
-
+        </section>
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://coderthemes.com/around/assets/vendor/parallax-js/dist/parallax.min.js"></script>
     <script src="https://coderthemes.com/around/assets/vendor/swiper/swiper-bundle.min.js"></script>
@@ -325,7 +179,7 @@ include ('config.php');
             var crypto_amount
             var crypto_logo
 
-            $('#send_amount').on('change', function(e) {
+            $('#send_amount').on('input', function(e) {
                 e.preventDefault();
 
                 var send_amount = $('#send_amount').val()
@@ -390,8 +244,6 @@ include ('config.php');
                 });
                 $('#amount-in-crypto-crypto').text(crypto_name);
             }));
-
-
 
 
 
