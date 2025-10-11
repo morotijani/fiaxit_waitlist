@@ -197,7 +197,7 @@ include ('config.php');
                                 <div class="accordion-collapse collapse show" id="questionOne" aria-labelledby="headingOne" data-bs-parent="#faq">
                                     <div class="accordion-body fs-sm">
                                         <p class="text-center text-body-warning mb-1">✌️ No Spam — We Promise!</p>
-                                        <form id="sigin-form" method="POST">
+                                        <form id="waitlist-form" method="POST">
                                             <div id="response-message"></div>
                                             <div class="mb-4">
                                                 <label class="form-label" for="email">Email Address</label>
@@ -207,24 +207,24 @@ include ('config.php');
                                                 <label for="phone" class="form-label" for="phone">Phone Number</label>
                                                 <div class="input-group">
                                                     <select class="form-select" id="countryCode" required>
-                                                        <option value="+233" selected>🇬🇭 +233 (Ghana)</option>
-                                                        <option value="+256">🇺🇬 +256 (Uganda)</option>
-                                                        <option value="+254">🇰🇪 +254 (Kenya)</option>
-                                                        <option value="+234">🇳🇬 +234 (Nigeria)</option>
+                                                        <option value="+233" data-length="9" selected>🇬🇭 +233 (Ghana)</option>
+                                                        <option value="+256" data-length="9">🇺🇬 +256 (Uganda)</option>
+                                                        <option value="+254" data-length="9">🇰🇪 +254 (Kenya)</option>
+                                                        <option value="+234" data-length="10">🇳🇬 +234 (Nigeria)</option>
                                                     </select>
                                                     <input type="text" class="form-control" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
                                                 </div>
                                             </div>
                                             <div class="d-sm-flex justify-content-center justify-content-lg-start">
-                                                <button class="btn btn-secondary w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
+                                                <button class="btn btn-secondary w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="join-button" type="button">Join waitlist</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
 
-
-
+                        
+                            <!-- EXNCHANGE FORM -->
                             <div class="vstack gap-1">
                                 <div class="bg-body-secondary rounded-3 p-4">
                                         <div class="d-flex justify-content-between text-xs text-muted">
@@ -259,10 +259,9 @@ include ('config.php');
                                                     ?>
                                                     <li>
                                                         <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:;">
-                                                            <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
+                                                                <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
                                                             <span><?= $crypto['symbol']; ?></span>
                                                             <input type="hidden" name="to_cypto_id" id="to_crypto_details" value="<?= $crypto['id'] . '/' .$crypto['symbol'] . '/' . $crypto['name'] . '/' . number_format($crypto['quote']['USD']['price'], 2); ?>">
-
                                                         </a>
                                                     </li>
                                                     <?php 
@@ -289,17 +288,12 @@ include ('config.php');
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
-                        
                     </div>
                 </div>
-                
             </div>
             <div class="text-center">
-                Built by <a href="https://namibra.io">namibra.io</a>
+                <p class="text-warning text-sm mb-0">Built by <a href="https://namibra.io">namibra.io</a></p>
             </div>
         </section>
     
@@ -418,20 +412,30 @@ include ('config.php');
                 });
                 $('#amount-in-crypto-crypto').text(crypto_name);
             }));
+        });
+    </script>
 
-
-
+    
+    <script>
+        $(document).ready(function() {
 
             // Activate input mask for phone
             $('#phone').inputmask();
 
             // Handle form submission
-            $('#signin-button').on('click', function() {
-                const email = $('#email').val().trim();
-                const phone = $('#phone').val().trim();
-                const button = $(this);
-                const messageBox = $('#response-message');
+            const email = $('#email').val().trim();
+            const countrySelect = document.getElementById('countryCode');
+            const phone = $('#phone').val().trim();
+            const button = $(this);
+            const messageBox = $('#response-message');
 
+            phone.addEventListener('input', () => {
+                // Only allow digits
+                phone.value = phone.value.replace(/\D/g, '');
+            });
+
+            $('#join-button').on('click', function() {
+               
                 // Basic validations
                 if (!email) {
                     $('#email').focus()
@@ -446,9 +450,18 @@ include ('config.php');
                     return;
                 }
 
+                const code = countrySelect.value;
+                const requiredLength = parseInt(countrySelect.selectedOptions[0].dataset.length);
+                const phone = phoneInput.value.trim();
+
                 if (!phone) {
                     $('#phone').focus()
                     messageBox.html('<div class="alert alert-danger">Please enter your phone number.</div>');
+                    return;
+                }
+
+                if (phone.length !== requiredLength) {
+                    response.innerHTML = `<span class="text-danger">⚠️ ${countrySelect.selectedOptions[0].textContent.split(' ')[1]} numbers must be ${requiredLength} digits long.</span>`;
                     return;
                 }
 
