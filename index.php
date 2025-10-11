@@ -200,12 +200,20 @@ include ('config.php');
                                         <form id="sigin-form" method="POST">
                                             <div id="response-message"></div>
                                             <div class="mb-4">
-                                                <label class="visually-hidden" for="email">Email Address</label>
-                                                <input class="form-control form-control-lg" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
+                                                <label class="form-label" for="email">Email Address</label>
+                                                <input class="form-control" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
                                             </div>
                                             <div class="mb-4 phone">
-                                                <label class="visually-hidden" for="phone">Phone</label>
-                                                <input type="text" class="form-control form-control-lg" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
+                                                <label for="phone" class="form-label" for="phone">Phone Number</label>
+                                                <div class="input-group">
+                                                    <select class="form-select" id="countryCode" required>
+                                                        <option value="+233" selected>🇬🇭 +233 (Ghana)</option>
+                                                        <option value="+256">🇺🇬 +256 (Uganda)</option>
+                                                        <option value="+254">🇰🇪 +254 (Kenya)</option>
+                                                        <option value="+234">🇳🇬 +234 (Nigeria)</option>
+                                                    </select>
+                                                    <input type="text" class="form-control" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
+                                                </div>
                                             </div>
                                             <div class="d-sm-flex justify-content-center justify-content-lg-start">
                                                 <button class="btn btn-secondary w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
