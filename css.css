@@ -7,6 +7,11 @@
         "wdth" 100;
 }
 
+body {
+     background: radial-gradient(circle at top right, rgba(255,192,253,0.3), rgba(180,180,255,0.1), #fafafa);
+      min-height: 100vh;
+}
+
 
 /*  */
 

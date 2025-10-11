@@ -20,17 +20,63 @@ include ('config.php');
     <link href="https://coderthemes.com/around/assets/css/theme.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="css.css" rel="stylesheet" type="text/css">
+    <style>
+         /* === ROTATING CIRCLES === */
+    .circle {
+      position: absolute;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 50%;
+      animation: rotate 80s linear infinite;
+    }
+    .circle:nth-child(1) { width: 600px; height: 600px; }
+    .circle:nth-child(2) { width: 800px; height: 800px; animation-duration: 120s; }
+    .circle:nth-child(3) { width: 1000px; height: 1000px; animation-duration: 160s; }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* === FLOATING TAGS === */
+    .floating-tag {
+      position: absolute;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+      color: #333;
+      z-index: 3;
+      animation: float 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+    }
+
+    .tag-1 { top: 15%; left: 12%; animation-delay: 0s; }
+    .tag-2 { top: 10%; right: 15%; animation-delay: 1s; }
+    .tag-3 { bottom: 18%; right: 12%; animation-delay: 2s; }
+    .tag-4 { bottom: 12%; left: 20%; animation-delay: 3s; }
+    
+    </style>
 </head>
 <body >
+    <!-- Floating tags -->
+  <div class="floating-tag tag-1"><img src="btc.png" width="20" /> Bitcoin (BTC)</div>
+  <div class="floating-tag tag-2"><img src="USDT.png" width="20" /> USDT</div>
+  <div class="floating-tag tag-3"><img src="eth.png" width="20" /> Ethereum (ETH)</div>
+  <div class="floating-tag tag-4"><img src="bnb.png" width="20" /> Binance Coin (BNB)</div>
 
 
     
       <!-- Gallery -->
-      <section class="container py-5 my-lg-3 my-xl-4 my-xxl-5">
-        <!-- <div class="text-center pt-sm-2 pt-md-4 pt-lg-3 pt-xl-4 pb-3 mx-auto mb-3 mb-lg-4" style="max-width: 720px;">
-          <h2 class="h1 pt-1 pt-sm-2">Take another look at Around Max</h2>
-          <p class="mb-0">Turpis nullam netus sed aliquam consectetur at felis consequat tincidunt orci varius arcu urna neque eget maecenas consequat lacus habitasse adipiscing.</p>
-        </div> -->
+      <!-- <section class="container py-5 my-lg-3 my-xl-4 my-xxl-5">
             <div class="row g-4 mb-3 mb-xl-0 pb-sm-2 pb-md-4 pb-xl-5">
                 <div class="col-md-5 col-lg-4 order-md-1">
                     <div class="card border-0 h-100 bg-size-cover bg-position-top-center" style="min-height: 280px; background-image: url(cover.png);">
@@ -126,6 +172,126 @@ include ('config.php');
                         </div>
                     </div>
                 </div>
+            </div>
+        </section> -->
+         <!-- FAQ (Accordion) -->
+        <section class="bg-secondary py-5">
+            <div class="container py-md-2 py-lg-3 py-xl-5 my-2 my-sm-3 my-md-4 my-xxl-5">
+                <img class="" src="logo.png" width="150" alt="Image">
+                <div class="row">
+                    <div class="col-md-4 text-center text-md-start">
+                        <h2 class="h3">Exchange your crypto asset instantly, securely and seemslessly</h2>
+                        <p class="pb-3 pb-sm-4">Be among the first to enjoy seamless and secure crypto asset exchange; executed at lightning speed.</p>
+                        <div class="d-none d-md-flex justify-content-center">
+                            <svg class="text-warning ms-n4" width="200" height="211" viewBox="0 0 200 211" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M198.804 194.488C189.279 189.596 179.529 185.52 169.407 182.07L169.384 182.049C169.227 181.994 169.07 181.939 168.912 181.884C166.669 181.139 165.906 184.546 167.669 185.615C174.053 189.473 182.761 191.837 189.146 195.695C156.603 195.912 119.781 196.591 91.266 179.049C62.5221 161.368 48.1094 130.695 56.934 98.891C84.5539 98.7247 112.556 84.0176 129.508 62.667C136.396 53.9724 146.193 35.1448 129.773 30.2717C114.292 25.6624 93.7109 41.8875 83.1971 51.3147C70.1109 63.039 59.63 78.433 54.2039 95.0087C52.1221 94.9842 50.0776 94.8683 48.0703 94.6608C30.1803 92.8027 11.2197 83.6338 5.44902 65.1074C-1.88449 41.5699 14.4994 19.0183 27.9202 1.56641C28.6411 0.625793 27.2862 -0.561638 26.5419 0.358501C13.4588 16.4098 -0.221091 34.5242 0.896608 56.5659C1.8218 74.6941 14.221 87.9401 30.4121 94.2058C37.7076 97.0203 45.3454 98.5003 53.0334 98.8449C47.8679 117.532 49.2961 137.487 60.7729 155.283C87.7615 197.081 139.616 201.147 184.786 201.155L174.332 206.827C172.119 208.033 174.345 211.287 176.537 210.105C182.06 207.125 187.582 204.122 193.084 201.144C193.346 201.147 195.161 199.887 195.423 199.868C197.08 198.548 193.084 201.144 195.528 199.81C196.688 199.192 197.846 198.552 199.006 197.935C200.397 197.167 200.007 195.087 198.804 194.488ZM60.8213 88.0427C67.6894 72.648 78.8538 59.1566 92.1207 49.0388C98.8475 43.9065 106.334 39.2953 114.188 36.1439C117.295 34.8947 120.798 33.6609 124.168 33.635C134.365 33.5511 136.354 42.9911 132.638 51.031C120.47 77.4222 86.8639 93.9837 58.0983 94.9666C58.8971 92.6666 59.783 90.3603 60.8213 88.0427Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-lg-7 offset-lg-1">
+                        <div class="accordion" id="faq">
+                            <div class="accordion-item bg-light">
+                                <h3 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#questionOne" aria-expanded="true" aria-controls="questionOne">Waitlist form.</button>
+                                </h3>
+                                <div class="accordion-collapse collapse show" id="questionOne" aria-labelledby="headingOne" data-bs-parent="#faq">
+                                    <div class="accordion-body fs-sm">
+                                        <p class="text-center text-body-warning mb-1">✌️ No Spam — We Promise!</p>
+                                        <form id="sigin-form" method="POST">
+                                            <div id="response-message"></div>
+                                            <div class="mb-4">
+                                                <label class="visually-hidden" for="email">Email Address</label>
+                                                <input class="form-control form-control-lg" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
+                                            </div>
+                                            <div class="mb-4 phone">
+                                                <label class="visually-hidden" for="phone">Phone</label>
+                                                <input type="text" class="form-control form-control-lg" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
+                                            </div>
+                                            <div class="d-sm-flex justify-content-center justify-content-lg-start">
+                                                <button class="btn btn-secondary w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="vstack gap-1">
+                                <div class="bg-body-secondary rounded-3 p-4">
+                                        <div class="d-flex justify-content-between text-xs text-muted">
+                                            <span class="fw-semibold">From</span> 
+                                            <span>
+                                            1
+                                            <span id="preview-symbol">
+                                                <?= $coin_data['data'][0]['symbol']; ?>
+                                            </span>: 
+                                            <span id="preview-amount">
+                                                <?= number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?> USD
+                                            </span>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-2 mt-4">
+                                            <input type="number" min="1" id="send_amount" name="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="$0.00" oninput="validatePositiveNumber(this)" autocomplete="off" inputmode="numeric"> 
+                                            <div class="dropdown" >
+                                                <button class="btn btn-sm rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
+                                                    <span id="preview-symbol-selected" class="text-dark">
+                                                        <?= $coin_data['data'][0]['symbol']; ?>
+                                                    </span> 
+                                                    <i class="bi bi-chevron-down text-xs me-1"></i>
+
+                                                    <input type="hidden" name="to_crypto_details_default" id="to_crypto_details_default" value="<?= $coin_data['data'][0]['id'] . '/' . $coin_data['data'][0]['symbol'] . '/' . $coin_data['data'][0]['name'] . '/' . number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?>">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" id="list-crypto">
+                                                    <?php 
+                                                        if (is_array($coin_data)) {
+                                                            if (isset($coin_data['data'])) {
+                                                                foreach (array_slice($coin_data['data'], 0, 5) as $crypto) {
+                                                                    $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
+                                                    ?>
+                                                    <li>
+                                                        <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:;">
+                                                            <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
+                                                            <span><?= $crypto['symbol']; ?></span>
+                                                            <input type="hidden" name="to_cypto_id" id="to_crypto_details" value="<?= $crypto['id'] . '/' .$crypto['symbol'] . '/' . $crypto['name'] . '/' . number_format($crypto['quote']['USD']['price'], 2); ?>">
+
+                                                        </a>
+                                                    </li>
+                                                    <?php 
+                                                                }
+                                                            }
+                                                        }
+                                                    ?>
+                                                    <input type="hidden" name="to_cypto" id="to_cypto" value="">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative text-center my-n4 overlap-10">
+                                        <div class="icon icon-sm icon-shape bg-body shadow-soft-3 rounded-circle text-sm text-body-tertiary">
+                                            <i class="bi bi-currency-bitcoin"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-body-secondary rounded-3 p-4">
+                                        <div class="d-flex justify-content-between text-xs text-muted">
+                                            <span class="fw-semibold">Amount in Crypto</span> 
+                                            <span><span id="amount-in-crypto-crypto"></span>: <span id="amount-in-crypto-amount"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            <div class="text-center">
+                Built by <a href="https://namibra.io">namibra.io</a>
             </div>
         </section>
     
