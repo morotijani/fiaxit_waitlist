@@ -476,15 +476,14 @@
                         url: 'waitlist.php', // your PHP file to handle form
                         type: 'POST',
                         data: { email: email, phone: phone, countryCode : code },
-                            success: function(response) {
-                                if (response == 'Success') {
-                                    messageBox.html('<div class="alert alert-success">Thank you! You have been added to the waitlist.</div>');
-                                    button.html('Submitted ✅');
-                                } else {
-                                    messageBox.html('<div class="alert alert-danger">' + response + '</div>');
-                                    button.prop('disabled', false).html('Join waitlist');
-                                }
-                            
+                        success: function(response) {
+                            if (response == 'Success') {
+                                messageBox.html('<div class="alert alert-success">Thank you! You have been added to the waitlist.</div>');
+                                button.html('Submitted ✅');
+                            } else {
+                                messageBox.html('<div class="alert alert-danger">' + response + '</div>');
+                                button.prop('disabled', false).html('Join waitlist');
+                            }
                         },
                         error: function() {
                             messageBox.html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');

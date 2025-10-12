@@ -181,13 +181,12 @@
     }
 
     // Send EMAIL
-	function send_email($name, $to, $subject, $body) {
+	function send_email($to, $subject, $body) {
 		$mail = new PHPMailer(true);
 		try {
-	        $fn = $name;
 	        $to = $to;
 	        $from = 'info@carethatfeelslikehome.com';
-	        $from_name = 'Care That Feels Like Home';
+	        $from_name = 'Fiaxit.app';
 	        $subject = $subject;
 	        $body = $body;
 

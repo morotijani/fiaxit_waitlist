@@ -50,8 +50,33 @@
         ]);
 
         if ($result) {
-           // You can now save to DB or send an email notification here.
-            // Example: file_put_contents('waitlist.txt', \"$email | $phone\\n\", FILE_APPEND);
+           	// You can now save to DB or send an email notification here.
+        	// Example: file_put_contents('waitlist.txt', \"$email | $phone\\n\", FILE_APPEND);
+
+			// send email to user
+			$title = 'Waitlist . Fiaxit';
+			$subject = 'You\'re on the list 🚀';
+			$topic = 'Thanks for joining the waitlist — you\'re officially on board for the next big thing in crypto';
+			$Body = '
+				<p>
+					We’re building something special: a secure, lightning-fast exchange designed for traders, investors, and crypto-curious minds alike. As a waitlist member, you’ll be among the first to: 
+					<br>
+					<br>
+					• 	🔓 Get early access before public launch
+					<br>
+					• 	💬 Join exclusive community discussions
+					<br>
+					• 	🎁 Receive special perks and reward
+					<br>
+				</p>
+				<p>
+					We’ll keep you updated as we get closer to launch. In the meantime, feel free to follow us on <a href="x.com/namibra">X(Twitter)</a>, to stay in the loop and connect with fellow early adopters.
+					<br>
+					Welcome to the future of crypto.
+				</p>
+			';
+			include ('mail_body.php');
+			send_email($email, $subject, $body);
 
             echo "Success"; 
         } else {
