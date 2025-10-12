@@ -8,7 +8,7 @@
     $password = '';
 
     // AUTO LOAD VENDOR FILES
-    require dirname(__DIR__)  . '/vendor/autoload.php';
+    require 'vendor/autoload.php';
 
     // connection to database
     try {
@@ -155,7 +155,7 @@
         global $dbConnection;
 
         $query = "
-            SELECT * FROM susu_admins 
+            SELECT * FROM list 
             WHERE list_email = ? 
             LIMIT 1
         ";
@@ -170,7 +170,7 @@
         global $dbConnection;
 
         $query = "
-            SELECT * FROM susu_admins 
+            SELECT * FROM list 
             WHERE list_phone = ? 
             LIMIT 1
         ";

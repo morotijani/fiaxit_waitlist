@@ -5,7 +5,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = trim($_POST['email'] ?? '');
         $phone = trim($_POST['phone'] ?? '');
-        $country_code = trim($_POST['phone'] ?? '');
+        $country_code = trim($_POST['countryCode'] ?? '');
 
         if (empty($email) || empty($phone)) {
             http_response_code(400);
@@ -33,13 +33,14 @@
 		$refferer = $a->refferer;
 
         $sql = '
-            INSERT INTO `list`(`list_id`, `list_email`, `list_phone`, `list_device`, `list_os`, `list_refferer`, `list_browser`, `list_ip`) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO `list`(`list_id`, `list_email`, `country_code`, `list_phone`, `list_device`, `list_os`, `list_refferer`, `list_browser`, `list_ip`) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ';
         $statment = $dbConnection->prepare($sql);
         $result = $statment->execute([
             guidv4() . '-' . strtotime(date("Y-m-d H:m:s")), 
             $email, 
+			$country_code, 
             $phone, 
             getDeviceType(), 
 			$operatingSystem, 
@@ -57,3 +58,4 @@
             echo "Failed";
         }
     }
+?>
