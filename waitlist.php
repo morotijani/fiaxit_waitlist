@@ -77,6 +77,8 @@
 			';
 			include ('mail_body.php');
 			send_email($email, $subject, $body);
+			$cleanedPhone = $country_code . $phone;
+			send_sms('Namibra welcome you to Levina 🤞.', $cleanedPhone);
 
             echo "Success"; 
         } else {

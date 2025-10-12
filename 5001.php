@@ -38,7 +38,7 @@
                 <div class="d-sm-flex align-items-center mb-4">
                     <h1 class="h2 mb-4 mb-sm-0 me-4">Wait list</h1>
                     <div class="d-flex ms-auto">
-                        <button class="btn btn-secondary me-3 me-sm-4" type="button">Download</button>
+                        <a href="visitors.php" class="btn btn-dark">Visitors</a>
                     </div>
                 </div>
                 <div class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
@@ -56,8 +56,8 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="h-100 bg-secondary rounded-3 text-center p-4">
                                         <h2 class="h6 pb-2 mb-1">Visitors</h2>
-                                        <div class="h2 text-primary mb-2">$735.00</div>
-                                            <p class="fs-sm text-body-secondary mb-0">To be paid on 8/15/2023</p>
+                                        <div class="h2 text-primary mb-2">#3</div>
+                                            <p class="fs-sm text-body-secondary mb-0"><?= date("Y-m-d"); ?></p>
                                         </div>
                                     </div>
                                 </div>

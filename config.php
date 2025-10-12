@@ -36,6 +36,59 @@
     // defined keys
     define ('COINCAP_APIKEY', "c06fd6c7-8b47-438d-802a-c7745d29a291");
     define ('PROOT', "");
+    define ('ARKESEL_SMS_API_KEY', "SFRtRHlCek1qQkVWU1BhY3BPTVE");
+
+    // SEND SMS
+	function send_sms($msg, $phone) {
+		$sender = "Namibra";
+		$msg = urlencode($msg);
+	
+		$curl = curl_init();
+		curl_setopt_array($curl, 
+			array(
+				CURLOPT_URL => "https://sms.arkesel.com/sms/api?action=send-sms&api_key=".ARKESEL_SMS_API_KEY."&to={$phone}&from={$sender}&sms={$msg}",
+				# When sending SMS to Nigerian contacts, the use_case field is required |
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 10,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'GET', 
+			)
+		);
+		$json_data = curl_exec($curl);
+		curl_close($curl);
+		$response_data = json_decode($json_data);
+		if ($response_data->code == 'ok') {
+			return 1;
+		}
+		
+		return 0;
+	}
+
+    function sanitizeGhanaPhone($input) {
+		// Remove any non-numeric characters
+		$digits = preg_replace('/\D/', '', $input);
+
+		// If starts with '+233', remove '+'
+		if (strpos($input, '+233') === 0) {
+			$digits = substr($digits, 1); // remove the initial +
+		}
+
+		// If starts with '0' and has 10 digits
+		if (preg_match('/^0\d{9}$/', $digits)) {
+			$digits = '233' . substr($digits, 1); // remove leading 0 and add 233
+		}
+		// If starts with '233' and has 12 digits (233 + 9 digits)
+		elseif (preg_match('/^233\d{9}$/', $digits)) {
+			// Already formatted, do nothing
+		} else {
+			return false; // Invalid format
+		}
+
+		return $digits;
+	}
 
     // $curl = curl_init();
 
