@@ -1,6 +1,6 @@
 <?php
 
-    include ('config.php');
+    require ('config.php');
 
 ?>
 
@@ -298,7 +298,8 @@
                 <p class="text-warning text-sm mb-0">Built by <a href="https://namibra.io">namibra.io</a></p>
             </div>
         </section>
-    
+        <div id="status" class="small text-success">Recording...</div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://coderthemes.com/around/assets/vendor/parallax-js/dist/parallax.min.js"></script>
     <script src="https://coderthemes.com/around/assets/vendor/swiper/swiper-bundle.min.js"></script>
@@ -494,5 +495,37 @@
             });
         });
     </script>
+
+    <script>
+        if (!sessionStorage.getItem('visitor_logged')) {
+            const client = {
+                screen: `${screen.width}x${screen.height}`,
+                colorDepth: screen.colorDepth,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                platform: navigator.platform,
+                language: navigator.language,
+                cookiesEnabled: navigator.cookieEnabled,
+                referer: document.referrer,
+                url: window.location.href,
+                ua: navigator.userAgent
+            };
+
+            fetch('log.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(client)
+            })
+            .then(r => r.json())
+            .then(j => {
+                if (j.success) {
+                    sessionStorage.setItem('visitor_logged', '1');
+                    document.getElementById('status').textContent = 'Visit recorded successfully.';
+                } else {
+                    document.getElementById('status').textContent = 'Error recording visit.';
+                }
+            })
+            .catch(() => document.getElementById('status').textContent = 'Network error.');
+        }
+</script>
 </body>
 </html>
