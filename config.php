@@ -27,6 +27,11 @@
 		echo "</pre>";
 	    die;
 	}
+
+    // Make Date Readable
+	function pretty_date($date) {
+		return date("M d, Y h:i A", strtotime($date));
+	}
     
     // defined keys
     define ('COINCAP_APIKEY', "c06fd6c7-8b47-438d-802a-c7745d29a291");

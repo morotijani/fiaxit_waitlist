@@ -2,6 +2,15 @@
 
     include ('config.php');
 
+    // fetch alist data from database
+    $sql = "SELECT * FROM list";
+    $statement = $dbConnection->prepare($sql);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $count = $statement->rowCount();
+
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -62,20 +71,52 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">First Name</th>
-                                                <th scope="col">Last Name</th>
-                                                <th scope="col">Position</th>
+                                                <th scope="col">Email</th>
                                                 <th scope="col">Phone</th>
+                                                <th scope="col">Device</th>
+                                                <th scope="col">OS</th>
+                                                <th scope="col">Refferer</th>
+                                                <th scope="col">Browser</th>
+                                                <th scope="col">IP</th>
+                                                <th scope="col">Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php if (is_array($result) && $count > 0): ?>
+                                                <?php $i = 1; foreach ($result as $row ): ?>
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td>John</td>
-                                                <td>Doe</td>
-                                                <td>CEO, Founder</td>
-                                                <td>+3 555 68 70</td>
+                                                <th scope="row"><?= $i?></th>
+                                                <td><?= $row["list_email"]; ?></td>
+                                                <td>
+                                                    <?= $row["country_code"] . $row["list_phone"]; ?>
+                                                    <br>
+                                                    <?php 
+                                                        if ($row["country_code"] == "+233") {
+                                                            echo "Ghana";
+                                                        } else if ($row["country_code"] == "+256") {
+                                                            echo "Uganda";
+                                                        } else if ($row["country_code"] == "+254") {
+                                                            echo "Kenya";
+                                                        } else if ($row["country_code"] == "+234") {
+                                                            echo "Nigeria";
+                                                        } else {
+                                                            echo "Unknown";
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td><?= $row["list_device"]; ?></td>
+                                                <td><?= $row["list_os"]; ?></td>
+                                                <td><?= $row["list_refferer"]; ?></td>
+                                                <td><?= $row["list_browser"]; ?></td>
+                                                <td><?= $row["list_ip"]; ?></td>
+                                                <td><?= pretty_date($row["created_at"]); ?></td>
                                             </tr>
+                                            <?php $i++; endforeach; ?>
+                                            <?php else: ?>
+                                                <tr>
+                                                    <td colspan="7" class="text-center">No data</td>
+                                                </tr>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>
