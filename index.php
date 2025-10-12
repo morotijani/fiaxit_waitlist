@@ -161,7 +161,7 @@ include ('config.php');
                                     </div>
                                     <div class="mb-4 phone">
                                         <label class="visually-hidden" for="phone">Phone</label>
-                                        <input type="text" class="form-control form-control-lg" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
+                                        <input type="text" class="form-control form-control-lg" id="pqhone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
                                     </div>
                                     <div class="d-sm-flex justify-content-center justify-content-lg-start">
                                         <button class="btn btn-lg btn-info w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
@@ -201,18 +201,19 @@ include ('config.php');
                                             <div id="response-message"></div>
                                             <div class="mb-4">
                                                 <label class="form-label" for="email">Email Address</label>
-                                                <input class="form-control" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
+                                                <input class="form-control form-control-lg" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
                                             </div>
                                             <div class="mb-4 phone">
-                                                <label for="phone" class="form-label" for="phone">Phone Number</label>
+                                                <label class="form-label">Phone Number</label>
                                                 <div class="input-group">
-                                                    <select class="form-select" id="countryCode" required>
+                                                    <select class="border-0" id="countryCode" required>
                                                         <option value="+233" data-length="9" selected>🇬🇭 +233 (Ghana)</option>
                                                         <option value="+256" data-length="9">🇺🇬 +256 (Uganda)</option>
                                                         <option value="+254" data-length="9">🇰🇪 +254 (Kenya)</option>
                                                         <option value="+234" data-length="10">🇳🇬 +234 (Nigeria)</option>
                                                     </select>
-                                                    <input type="text" class="form-control" id="phone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
+                                                    <!-- <input type="text" class="form-control" id="phone1" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'"> -->
+                                                    <input type="tel" class="form-control" id="phone" name="phone">
                                                 </div>
                                             </div>
                                             <div class="d-sm-flex justify-content-center justify-content-lg-start">
@@ -225,7 +226,7 @@ include ('config.php');
 
                         
                             <!-- EXNCHANGE FORM -->
-                            <div class="vstack gap-1">
+                            <!-- <div class="vstack gap-1">
                                 <div class="bg-body-secondary rounded-3 p-4">
                                         <div class="d-flex justify-content-between text-xs text-muted">
                                             <span class="fw-semibold">From</span> 
@@ -287,7 +288,7 @@ include ('config.php');
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -415,19 +416,14 @@ include ('config.php');
         });
     </script>
 
-    
+
     <script>
-        $(document).ready(function() {
+       $(document).ready(function() {
 
             // Activate input mask for phone
             $('#phone').inputmask();
 
             // Handle form submission
-            const email = $('#email').val().trim();
-            const countrySelect = document.getElementById('countryCode');
-            const phone = $('#phone').val().trim();
-            const button = $(this);
-            const messageBox = $('#response-message');
 
             phone.addEventListener('input', () => {
                 // Only allow digits
@@ -435,6 +431,11 @@ include ('config.php');
             });
 
             $('#join-button').on('click', function() {
+                const email = $('#email').val().trim();
+                const countrySelect = document.getElementById('countryCode');
+                const phone = $('#phone').val().trim();
+                const button = $(this);
+                const messageBox = $('#response-message');
                
                 // Basic validations
                 if (!email) {
@@ -452,7 +453,6 @@ include ('config.php');
 
                 const code = countrySelect.value;
                 const requiredLength = parseInt(countrySelect.selectedOptions[0].dataset.length);
-                const phone = phoneInput.value.trim();
 
                 if (!phone) {
                     $('#phone').focus()
@@ -461,15 +461,8 @@ include ('config.php');
                 }
 
                 if (phone.length !== requiredLength) {
-                    response.innerHTML = `<span class="text-danger">⚠️ ${countrySelect.selectedOptions[0].textContent.split(' ')[1]} numbers must be ${requiredLength} digits long.</span>`;
+                    messageBox.html(`<div class="alert alert-danger">⚠ ${countrySelect.selectedOptions[0].textContent.split(' ')[1]} numbers must be ${requiredLength} digits long.</div>`);
                     return;
-                }
-
-                // phone: require at least 10 digits (strip mask chars)
-                const digits = phone.replace(/\D/g, '');
-                if (digits.length < 10) {
-                    $('#phone').focus()
-                    return $msg.html('<div class="alert alert-danger">Please enter a valid phone number.</div>');
                 }
 
                 // Disable button and show loading text
