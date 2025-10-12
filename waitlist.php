@@ -77,8 +77,8 @@
 			';
 			include ('mail_body.php');
 			send_email($email, $subject, $body);
-			$cleanedPhone = $country_code . $phone;
-			send_sms('Namibra welcome you to Levina 🤞.', $cleanedPhone);
+			$cleanedPhone = '0' . $phone;
+			send_sms('Ready for blazing-fast, secure crypto swaps? You’ll be the first to try it.', $cleanedPhone);
 
             echo "Success"; 
         } else {
