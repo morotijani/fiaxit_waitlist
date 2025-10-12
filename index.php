@@ -1,8 +1,9 @@
 <?php
 
-include ('config.php');
+    include ('config.php');
 
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@ include ('config.php');
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
     <link href="https://coderthemes.com/around/assets/vendor/aos/dist/aos.css" rel="stylesheet" type="text/css">
     <link href="https://coderthemes.com/around/assets/icons/around-icons.min.css" rel="stylesheet" type="text/css">
@@ -206,7 +207,7 @@ include ('config.php');
                                             <div class="mb-4 phone">
                                                 <label class="form-label">Phone Number</label>
                                                 <div class="input-group">
-                                                    <select class="border-0" id="countryCode" required>
+                                                    <select class="border-0" id="countryCode" name="countryCode" required>
                                                         <option value="+233" data-length="9" selected>🇬🇭 +233 (Ghana)</option>
                                                         <option value="+256" data-length="9">🇺🇬 +256 (Uganda)</option>
                                                         <option value="+254" data-length="9">🇰🇪 +254 (Kenya)</option>
@@ -474,7 +475,7 @@ include ('config.php');
                     $.ajax({
                         url: 'waitlist.php', // your PHP file to handle form
                         type: 'POST',
-                        data: { email: email, phone: phone },
+                        data: { email: email, phone: phone, countryCode : code },
                             success: function(response) {
                             messageBox.html('<div class="alert alert-success">Thank you! You have been added to the waitlist.</div>');
                             button.html('Submitted ✅');
