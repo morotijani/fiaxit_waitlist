@@ -62,64 +62,73 @@ require ('config.php');
 <body >
     <main class="page-wrapper">
 
-  
+        <div class="row justify-content-center">
+            <!-- Page content -->
+            <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
+                <div class="d-sm-flex align-items-center mb-4">
+                    <h1 class="h2 mb-4 mb-sm-0 me-4">Visitor Analytics</h1>
+                    <div class="d-flex ms-auto">
+                        <a href="visitors.php" class="btn btn-dark">Visitors</a>
+                    </div>
+                </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded mb-4">
-  <div class="container-fluid">
-    <span class="navbar-brand">🌐 Visitor Analytics</span>
-  </div>
-</nav>
+                <div class="card border-0 py-1 p-md-2 p-xl-3 p-xxl-4">
+                    <div class="card-body">
+                        <div class="row g-4 py-4">
 
-<div class="container-fluid">
-  <div class="row g-4">
-    <!-- Map View -->
-    <div class="col-lg-7">
-      <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white fw-bold">Global Visitor Map</div>
-        <div class="card-body p-0">
-          <div id="map"></div>
+                            <!-- Sales value line chart -->
+                            <div class="col-md-8">
+                                <div class="h-100 border rounded-3 p-4">
+                                    <h2 class="h6 text-center text-sm-start mb-4">Global Visitor Map</h2>
+                                    <div id="map"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="h-100 border rounded-3 p-4">
+                                    <h2 class="h6 text-center text-sm-start mb-4">Your top countries</h2>
+                                    <canvas id="countryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visitor Table -->
+                <div class="row g-4 py-4">
+                    <div class="h-100 border card card-body">
+                        <h2 class="h6 text-center text-sm-start mb-4">Recent Visitors</h2>
+
+                        <!-- Basic table -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>IP</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Visited At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($mapData as $i => $v): ?>
+                                    <tr>
+                                        <td><?= $i+1 ?></td>
+                                        <td><?= htmlspecialchars($v['ip']) ?></td>
+                                        <td><?= htmlspecialchars($v['country']) ?></td>
+                                        <td><?= htmlspecialchars($v['city']) ?></td>
+                                        <td><?= htmlspecialchars($v['time']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page content -->
         </div>
-      </div>
-    </div>
-
-    <!-- Chart View -->
-    <div class="col-lg-5">
-      <div class="card shadow-sm">
-        <div class="card-header bg-success text-white fw-bold">Visitors per Country</div>
-        <div class="card-body chart-container">
-          <canvas id="countryChart"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Visitor Table -->
-  <div class="card mt-4 shadow-sm">
-    <div class="card-header bg-dark text-white fw-bold">Recent Visitors</div>
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table table-striped table-bordered table-sm align-middle mb-0">
-          <thead class="table-dark">
-            <tr>
-              <th>#</th><th>IP</th><th>Country</th><th>City</th><th>Visited At</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($mapData as $i => $v): ?>
-            <tr>
-              <td><?= $i+1 ?></td>
-              <td><?= htmlspecialchars($v['ip']) ?></td>
-              <td><?= htmlspecialchars($v['country']) ?></td>
-              <td><?= htmlspecialchars($v['city']) ?></td>
-              <td><?= htmlspecialchars($v['time']) ?></td>
-            </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+    </main>
 
 <script>
     // Data from PHP
