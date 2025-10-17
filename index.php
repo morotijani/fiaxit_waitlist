@@ -23,48 +23,53 @@
     <link href="css.css" rel="stylesheet" type="text/css">
     <style>
          /* === ROTATING CIRCLES === */
-    .circle {
-      position: absolute;
-      border: 1px solid rgba(0,0,0,0.05);
-      border-radius: 50%;
-      animation: rotate 80s linear infinite;
-    }
-    .circle:nth-child(1) { width: 600px; height: 600px; }
-    .circle:nth-child(2) { width: 800px; height: 800px; animation-duration: 120s; }
-    .circle:nth-child(3) { width: 1000px; height: 1000px; animation-duration: 160s; }
+        .circle {
+            position: absolute;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 50%;
+            animation: rotate 80s linear infinite;
+        }
+        .circle:nth-child(1) { width: 600px; height: 600px; }
+        .circle:nth-child(2) { width: 800px; height: 800px; animation-duration: 120s; }
+        .circle:nth-child(3) { width: 1000px; height: 1000px; animation-duration: 160s; }
 
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-    /* === FLOATING TAGS === */
-    .floating-tag {
-      position: absolute;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 8px 16px;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: 500;
-      color: #333;
-      z-index: 3;
-      animation: float 6s ease-in-out infinite alternate;
-    }
+        /* === FLOATING TAGS === */
+        .floating-tag {
+            position: absolute;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            color: #333;
+            z-index: 3;
+            animation: float 6s ease-in-out infinite alternate;
+        }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-20px); }
-    }
+        @keyframes float {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-20px); }
+        }
 
-    .tag-1 { top: 15%; left: 12%; animation-delay: 0s; }
-    .tag-2 { top: 10%; right: 15%; animation-delay: 1s; }
-    .tag-3 { bottom: 18%; right: 12%; animation-delay: 2s; }
-    .tag-4 { bottom: 12%; left: 20%; animation-delay: 3s; }
-    
+        .tag-1 { top: 15%; left: 12%; animation-delay: 0s; }
+        .tag-2 { top: 10%; right: 15%; animation-delay: 1s; }
+        .tag-3 { bottom: 18%; right: 12%; animation-delay: 2s; }
+        .tag-4 { bottom: 12%; left: 20%; animation-delay: 3s; }
+
+        @media (max-width: 768px) {
+            .tag-4 {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body >
