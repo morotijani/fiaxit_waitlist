@@ -69,14 +69,14 @@
 </head>
 <body >
     <!-- Floating tags -->
-  <div class="floating-tag tag-1"><img src="btc.png" width="20" /> Bitcoin (BTC)</div>
-  <div class="floating-tag tag-2"><img src="USDT.png" width="20" /> USDT</div>
-  <div class="floating-tag tag-3"><img src="eth.png" width="20" /> Ethereum (ETH)</div>
-  <div class="floating-tag tag-4"><img src="bnb.png" width="20" /> Binance Coin (BNB)</div>
+    <div class="floating-tag tag-1"><img src="btc.png" width="20" /> Bitcoin (BTC)</div>
+    <div class="floating-tag tag-2"><img src="USDT.png" width="20" /> USDT</div>
+    <div class="floating-tag tag-3"><img src="eth.png" width="20" /> Ethereum (ETH)</div>
+    <div class="floating-tag tag-4"><img src="bnb.png" width="20" /> Binance Coin (BNB)</div>
 
 
     
-         <!-- FAQ (Accordion) -->
+        <!-- FAQ (Accordion) -->
         <section class="bg-secondary py-5">
             <div class="container py-md-2 py-lg-3 py-xl-5 my-2 my-sm-3 my-md-4 my-xxl-5">
                 <img class="" src="logo.png" width="150" alt="Image">
@@ -125,72 +125,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                        
-                            <!-- EXNCHANGE FORM -->
-                            <!-- <div class="vstack gap-1">
-                                <div class="bg-body-secondary rounded-3 p-4">
-                                        <div class="d-flex justify-content-between text-xs text-muted">
-                                            <span class="fw-semibold">From</span> 
-                                            <span>
-                                            1
-                                            <span id="preview-symbol">
-                                                <?= $coin_data['data'][0]['symbol']; ?>
-                                            </span>: 
-                                            <span id="preview-amount">
-                                                <?= number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?> USD
-                                            </span>
-                                        </div>
-                                        <div class="d-flex justify-content-between gap-2 mt-4">
-                                            <input type="number" min="1" id="send_amount" name="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="$0.00" oninput="validatePositiveNumber(this)" autocomplete="off" inputmode="numeric"> 
-                                            <div class="dropdown" >
-                                                <button class="btn btn-sm rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
-                                                    <span id="preview-symbol-selected" class="text-dark">
-                                                        <?= $coin_data['data'][0]['symbol']; ?>
-                                                    </span> 
-                                                    <i class="bi bi-chevron-down text-xs me-1"></i>
-
-                                                    <input type="hidden" name="to_crypto_details_default" id="to_crypto_details_default" value="<?= $coin_data['data'][0]['id'] . '/' . $coin_data['data'][0]['symbol'] . '/' . $coin_data['data'][0]['name'] . '/' . number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?>">
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" id="list-crypto">
-                                                    <?php 
-                                                        if (is_array($coin_data)) {
-                                                            if (isset($coin_data['data'])) {
-                                                                foreach (array_slice($coin_data['data'], 0, 5) as $crypto) {
-                                                                    $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
-                                                    ?>
-                                                    <li>
-                                                        <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:;">
-                                                                <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
-                                                            <span><?= $crypto['symbol']; ?></span>
-                                                            <input type="hidden" name="to_cypto_id" id="to_crypto_details" value="<?= $crypto['id'] . '/' .$crypto['symbol'] . '/' . $crypto['name'] . '/' . number_format($crypto['quote']['USD']['price'], 2); ?>">
-                                                        </a>
-                                                    </li>
-                                                    <?php 
-                                                                }
-                                                            }
-                                                        }
-                                                    ?>
-                                                    <input type="hidden" name="to_cypto" id="to_cypto" value="">
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="position-relative text-center my-n4 overlap-10">
-                                        <div class="icon icon-sm icon-shape bg-body shadow-soft-3 rounded-circle text-sm text-body-tertiary">
-                                            <i class="bi bi-currency-bitcoin"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-body-secondary rounded-3 p-4">
-                                        <div class="d-flex justify-content-between text-xs text-muted">
-                                            <span class="fw-semibold">Amount in Crypto</span> 
-                                            <span><span id="amount-in-crypto-crypto"></span>: <span id="amount-in-crypto-amount"></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -209,115 +143,6 @@
 
     <!-- jQuery + Inputmask -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
-
-    <script>
-        // conver from fiat to crypto
-        async function convertToCrypto(amountUSD, cryptoSymbol, fiatSymbol = "USD") {
-            
-            try {
-                $('#amount-in-crypto-amount').text('Converting ...');
-                // **NEW:** Make the request to your PHP endpoint
-                let response = await fetch('convert-to-crypto.php?amount=' + amountUSD + '&symbol=' + cryptoSymbol + '&convert=' + fiatSymbol, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                });
-                let data = await response.json();
-
-                if (data.status.error_code == 0) {
-                    let cryptoAmount = data.data[cryptoSymbol].quote[fiatSymbol].price;
-                    cryptoAmount = amountUSD / cryptoAmount
-                    cryptoAmount = cryptoAmount.toFixed(8);
-                    return cryptoAmount;
-
-                } else {
-                    $('#amount-in-crypto-amount').text(data.status.error_message);
-                    console.error("Failed to fetch:", data.status.error_message);
-                }
-
-            } catch (error) {
-                $('#amount-in-crypto-amount').text("Failed to convert, please refresh page and try again.");
-                console.error("Failed to fetch:", error);
-            }
-        }
-
-
-        $(document).ready(function() {
-
-            var crypto_id
-            var crypto_symbol
-            var crypto_name
-            var crypto_amount
-            var crypto_logo
-
-            $('#send_amount').on('input', function(e) {
-                e.preventDefault();
-
-                var send_amount = $('#send_amount').val()
-                var coin = $("#to_crypto_details_default").val();
-                var crypto = $("#to_cypto").val(coin);
-
-                coin = coin.split("/");
-                crypto_symbol = coin[1];
-                crypto_name = coin[2];
-                convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
-                    if (
-                        conversionValue == NaN || 
-                        conversionValue == undefined || 
-                        conversionValue == null || 
-                        conversionValue <= 0 || 
-                        conversionValue == Infinity
-                    ) {
-                        $('#amount-in-crypto-amount').text('Failed to convert, please refresh page and try again.');
-                        $('#next-1').attr('disabled', true);
-                    } else {
-                        $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
-                        $('#next-1').attr('disabled', false);
-                    }
-                });
-                $('#amount-in-crypto-crypto').text(crypto_name);
-            })
-
-
-            // get selected crypto
-            $("#list-crypto").on("click", "li", (function() {
-                var send_amount = $('#send_amount').val()
-                var coin = $(this).find("#to_crypto_details").val();
-                $('#to_crypto_details_default').val(coin)
-                var crypto = $("#to_cypto").val(coin);
-                coin = coin.split("/");
-
-                crypto_id = coin[0];
-                crypto_symbol = coin[1];
-                crypto_name = coin[2]
-                crypto_amount = coin[3];
-                crypto_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/' + coin[0] + '.png';
-
-                $('#preview-symbol').text(crypto_symbol);
-                $('#preview-symbol-selected').text(crypto_symbol)
-                $('#preview-amount').text(crypto_amount);
-                $('#preview-logo').attr('src', crypto_logo);
-
-                convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
-                    if (
-                        conversionValue == NaN || 
-                        conversionValue == undefined || 
-                        conversionValue == null || 
-                        conversionValue <= 0 || 
-                        conversionValue == Infinity
-                    ) {
-                        $('#amount-in-crypto-amount').text('Failed to convert, please refresh page and try again.');
-                        $('#next-1').attr('disabled', true);
-                    } else {
-                        $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
-                        $('#next-1').attr('disabled', false);
-                    }
-                });
-                $('#amount-in-crypto-crypto').text(crypto_name);
-            }));
-        });
-    </script>
 
 
     <script>
@@ -420,12 +245,14 @@
             .then(j => {
                 if (j.success) {
                     sessionStorage.setItem('visitor_logged', '1');
-                    document.getElementById('status').textContent = 'Visit recorded successfully.';
+                    // document.getElementById('status').textContent = 'Visit recorded successfully.';
+                    console.log('Visit recorded successfully.');
                 } else {
-                    document.getElementById('status').textContent = 'Error recording visit.';
+                    // document.getElementById('status').textContent = 'Error recording visit.';
+                    console.log('Error recording visit.');
                 }
             })
-            .catch(() => document.getElementById('status').textContent = 'Network error.');
+            .catch(() => console.log('Network error.')); // document.getElementById('status').textContent = 'Network error.');
         }
 </script>
 </body>
