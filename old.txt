@@ -76,6 +76,105 @@
 
 
     
+      <!-- Gallery -->
+      <!-- <section class="container py-5 my-lg-3 my-xl-4 my-xxl-5">
+            <div class="row g-4 mb-3 mb-xl-0 pb-sm-2 pb-md-4 pb-xl-5">
+                <div class="col-md-5 col-lg-4 order-md-1">
+                    <div class="card border-0 h-100 bg-size-cover bg-position-top-center" style="min-height: 280px; background-image: url(cover.png);">
+                        <div class="d-nline-flex position-absolute top-50 start-50 translate-middle z-2" style="width: max-content;">
+                            <div class="vstack gap-1">
+                                <div class="bg-body-secondary rounded-3 p-4">
+                                        <div class="d-flex justify-content-between text-xs text-muted">
+                                            <span class="fw-semibold">From</span> 
+                                            <span>
+                                            1
+                                            <span id="preview-symbol">
+                                                <?= $coin_data['data'][0]['symbol']; ?>
+                                            </span>: 
+                                            <span id="preview-amount">
+                                                <?= number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?> USD
+                                            </span>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-2 mt-4">
+                                            <input type="number" min="1" id="send_amount" name="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="$0.00" oninput="validatePositiveNumber(this)" autocomplete="off" inputmode="numeric"> 
+                                            <div class="dropdown" >
+                                                <button class="btn btn-sm rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
+                                                    <span id="preview-symbol-selected" class="text-dark">
+                                                        <?= $coin_data['data'][0]['symbol']; ?>
+                                                    </span> 
+                                                    <i class="bi bi-chevron-down text-xs me-1"></i>
+
+                                                    <input type="hidden" name="to_crypto_details_default" id="to_crypto_details_default" value="<?= $coin_data['data'][0]['id'] . '/' . $coin_data['data'][0]['symbol'] . '/' . $coin_data['data'][0]['name'] . '/' . number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?>">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" id="list-crypto">
+                                                    <?php 
+                                                        if (is_array($coin_data)) {
+                                                            if (isset($coin_data['data'])) {
+                                                                foreach (array_slice($coin_data['data'], 0, 5) as $crypto) {
+                                                                    $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
+                                                    ?>
+                                                    <li>
+                                                        <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:;">
+                                                            <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
+                                                            <span><?= $crypto['symbol']; ?></span>
+                                                            <input type="hidden" name="to_cypto_id" id="to_crypto_details" value="<?= $crypto['id'] . '/' .$crypto['symbol'] . '/' . $crypto['name'] . '/' . number_format($crypto['quote']['USD']['price'], 2); ?>">
+
+                                                        </a>
+                                                    </li>
+                                                    <?php 
+                                                                }
+                                                            }
+                                                        }
+                                                    ?>
+                                                    <input type="hidden" name="to_cypto" id="to_cypto" value="">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative text-center my-n4 overlap-10">
+                                        <div class="icon icon-sm icon-shape bg-body shadow-soft-3 rounded-circle text-sm text-body-tertiary">
+                                            <i class="bi bi-currency-bitcoin"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-body-secondary rounded-3 p-4">
+                                        <div class="d-flex justify-content-between text-xs text-muted">
+                                            <span class="fw-semibold">Amount in Crypto</span> 
+                                            <span><span id="amount-in-crypto-crypto"></span>: <span id="amount-in-crypto-amount"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-8 order-md-2">
+                        <div class="card border-0 bg-secondary h-100 px-xl-4 pb-sm-2 pb-xl-4">
+                            <img class="d-block mx-auto" src="logo.png" width="200" alt="Image">
+                            <div class="card-body">
+                                <h1 class="display-5" style='font-family: "Google Sans Code", monospace;'>Exchange your crypto asset instantly, securely and seemslessly</h1>
+                                <p class="card-text">Be among the first to enjoy seamless and secure crypto asset exchange; executed at lightning speed.</p>
+                                <form class="mb-5" id="sigin-form" method="POST">
+                                    <div id="response-message"></div>
+                                    <div class="mb-4">
+                                        <label class="visually-hidden" for="email">Email Address</label>
+                                        <input class="form-control form-control-lg" id="email" type="email" placeholder="Enter your email address..." onfocus="" autocomplete="off" />
+                                    </div>
+                                    <div class="mb-4 phone">
+                                        <label class="visually-hidden" for="phone">Phone</label>
+                                        <input type="text" class="form-control form-control-lg" id="pqhone" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'">
+                                    </div>
+                                    <div class="d-sm-flex justify-content-center justify-content-lg-start">
+                                        <button class="btn btn-lg btn-info w-100 w-sm-auto mb-2 mb-sm-0 me-sm-1" id="signin-button" type="button">Join waitlist</button>
+                                    </div>
+                                </form>
+                                <p class="text-center text-body-warning mb-0">✌️ No Spam — We Promise!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
          <!-- FAQ (Accordion) -->
         <section class="bg-secondary py-5">
             <div class="container py-md-2 py-lg-3 py-xl-5 my-2 my-sm-3 my-md-4 my-xxl-5">
