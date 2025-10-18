@@ -22,13 +22,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="css.css" rel="stylesheet" type="text/css">
     <style>
-         /* === ROTATING CIRCLES === */
+        /* === ROTATING CIRCLES === */
         .circle {
             position: absolute;
             border: 1px solid rgba(0,0,0,0.05);
             border-radius: 50%;
             animation: rotate 80s linear infinite;
         }
+
         .circle:nth-child(1) { width: 600px; height: 600px; }
         .circle:nth-child(2) { width: 800px; height: 800px; animation-duration: 120s; }
         .circle:nth-child(3) { width: 1000px; height: 1000px; animation-duration: 160s; }
@@ -56,8 +57,8 @@
         }
 
         @keyframes float {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-20px); }
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
         }
 
         .tag-1 { top: 15%; left: 12%; animation-delay: 0s; }
@@ -79,8 +80,6 @@
     <div class="floating-tag tag-3"><img src="eth.png" width="20" /> Ethereum (ETH)</div>
     <div class="floating-tag tag-4"><img src="bnb.png" width="20" /> Binance Coin (BNB)</div>
 
-
-    
     <!-- FAQ (Accordion) -->
     <section class="bg-secondary py-5">
         <div class="container py-md-2 py-lg-3 py-xl-5 my-2 my-sm-3 my-md-4 my-xxl-5">
