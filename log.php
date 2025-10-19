@@ -25,6 +25,11 @@ function get_client_ip() {
 
 $ip = get_client_ip();
 
+// ✅ GeoIP lookup (free API) - robust: skip private IPs, try curl then file_get_contents, short timeout, fallback
+function is_public_ip($ip) {
+    return filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false;
+}
+
 // ✅ Deduplicate within 60 minutes
 $check = $dbConnection->prepare("SELECT id FROM visitors WHERE ip_address = ? AND visit_time > (NOW() - INTERVAL 60 MINUTE)");
 $check->execute([$ip]);
@@ -34,10 +39,58 @@ if ($check->rowCount() > 0) {
 }
 
 // ✅ GeoIP lookup (free API)
-$geo = @file_get_contents("https://ipapi.co/{$ip}/json/");
-$geo_data = $geo ? json_decode($geo, true) : [];
-$country = $geo_data['country_name'] ?? null;
-$city = $geo_data['city'] ?? null;
+// $geo = @file_get_contents("https://ipapi.co/{$ip}/json/");
+// $geo_data = $geo ? json_decode($geo, true) : [];
+// $country = $geo_data['country_name'] ?? null;
+// $city = $geo_data['city'] ?? null;
+
+$country = null;
+$city = null;
+
+if (is_public_ip($ip)) {
+    $service = "https://ipapi.co/{$ip}/json/";
+
+    $geo_json = null;
+    // Use cURL if available (more reliable)
+    if (function_exists('curl_version')) {
+        $ch = curl_init($service);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 3,
+            CURLOPT_CONNECTTIMEOUT => 2,
+            CURLOPT_FAILONERROR => true,
+            CURLOPT_SSL_VERIFYPEER => true,
+        ]);
+        $geo_json = curl_exec($ch);
+        $http = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        if ($http !== 200) $geo_json = null;
+    } else {
+        // fallback to file_get_contents with a short timeout
+        $ctx = stream_context_create(['http' => ['timeout' => 3]]);
+        $geo_json = @file_get_contents($service, false, $ctx);
+    }
+
+    $geo_data = $geo_json ? json_decode($geo_json, true) : [];
+    if (is_array($geo_data)) {
+        $country = $geo_data['country_name'] ?? null;
+        $city = $geo_data['city'] ?? null;
+    }
+    // optional fallback to another service if still empty
+    if (empty($country) && empty($city)) {
+        $fallback = "http://ip-api.com/json/{$ip}?fields=status,country,city,message";
+        $fallback_json = @file_get_contents($fallback);
+        $fb = $fallback_json ? json_decode($fallback_json, true) : [];
+        if (!empty($fb['status']) && $fb['status'] === 'success') {
+            $country = $fb['country'] ?? $country;
+            $city = $fb['city'] ?? $city;
+        }
+    }
+} else {
+    // local/private IPs - skip external lookup
+    $country = null;
+    $city = null;
+}
 
 // ✅ Other server info
 $user_agent = substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 1000);
