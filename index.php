@@ -117,6 +117,7 @@
                                                     <option value="+256" data-length="9">🇺🇬 +256 (Uganda)</option>
                                                     <option value="+254" data-length="9">🇰🇪 +254 (Kenya)</option>
                                                     <option value="+234" data-length="10">🇳🇬 +234 (Nigeria)</option>
+                                                    <option value="+255" data-length="10">🇹🇿 +255 (Tanzania)</option>
                                                 </select>
                                                 <!-- <input type="text" class="form-control" id="phone1" placeholder="(___)___-____" data-inputmask="'mask': '(999)999-9999'"> -->
                                                 <input type="tel" class="form-control" id="phone" name="phone">
