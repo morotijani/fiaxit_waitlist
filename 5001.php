@@ -9,7 +9,9 @@
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     $count = $statement->rowCount();
 
-
+    // count visitors
+    $c = $dbConnection->query("SELECT * FROM visitors")->rowCount();
+    $c = $c ?? 0;
 
 ?>
 <!doctype html>
@@ -56,7 +58,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="h-100 bg-secondary rounded-3 text-center p-4">
                                         <h2 class="h6 pb-2 mb-1">Visitors</h2>
-                                        <div class="h2 text-primary mb-2">#3</div>
+                                        <div class="h2 text-primary mb-2">#<?= $c; ?></div>
                                             <p class="fs-sm text-body-secondary mb-0"><?= date("Y-m-d"); ?></p>
                                         </div>
                                     </div>
